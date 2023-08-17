@@ -12,7 +12,7 @@ React package for simpler syntax in looping and conditional rendering via dedica
 
 - For Component
 
-````typescript
+```typescript
 import { For } from "@dev-amr/react-sugartax"
 import { useState } from "react"
 
@@ -27,6 +27,7 @@ const Component = () => {
     </>
   )
 }
+```
 
 - Show Component
 
@@ -39,10 +40,13 @@ const Component = () => {
 
   return (
     <>
-      <Show when={iter} fallback={<h1>No elements...😁</h1>}>
+      <Show
+        when={iter}
+        fallback={<h1>No elements...😁</h1>}
+      >
         {JSON.stringify(iter)}
       </Show>
     </>
   )
 }
-````
+```
