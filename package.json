@@ -1,6 +1,6 @@
 {
   "name": "@dev-amr/react-sugartax",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "React package for simpler syntax in looping and conditional rendering via dedicated components For.tsx & Show.tsx 😊",
   "main": "index.tsx",
   "scripts": {
