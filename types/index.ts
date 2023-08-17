@@ -23,4 +23,8 @@ export type ContextProps = {
 export type CaseProps = {
   that: string | number | boolean
   children: ReactNode
+  lt?: boolean
+  gt?: boolean
+  gte?: boolean
+  lte?: boolean
 }

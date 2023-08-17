@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {
   ForProps,
   CaseProps,
@@ -58,10 +58,32 @@ const Switch = ({ on, children }: SwitchProps) => {
  * @returns ReactNode
  * @children ReactNode
  */
-const Case = ({ that, children }: CaseProps) => {
+const Case = ({
+  that,
+  children,
+  lt,
+  lte,
+  gt,
+  gte,
+}: CaseProps) => {
   const { on } = useSwitchContext()
+
+  const [condition, setCondition] = useState(on === that)
+
+  useEffect(() => {
+    if (lt) {
+      setCondition(that < on)
+    } else if (lte) {
+      setCondition(that <= on)
+    } else if (gt) {
+      setCondition(that > on)
+    } else if (gte) {
+      setCondition(that >= on)
+    }
+  }, [])
+
   return (
-    <Show when={on === that} fallback={null}>
+    <Show when={condition} fallback={null}>
       {children}
     </Show>
   )
