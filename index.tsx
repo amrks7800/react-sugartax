@@ -1,4 +1,8 @@
-import React, { ReactNode } from "react"
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+} from "react"
 
 type ForProps<T> = {
   each: Array<T>
@@ -27,4 +31,42 @@ const Show = ({ when, fallback, children }: ShowProps) => {
   return when ? invokeChildren() : fallback
 }
 
-export { For, Show }
+type SwitchProps = {
+  on: string | boolean | number
+  children: ReactNode
+}
+
+type ContextProps = {
+  on: string | boolean | number
+}
+
+const SwitchContext = createContext<ContextProps>({
+  on: false,
+})
+
+const useSwitchContext = () => useContext(SwitchContext)
+
+const Switch = ({ on, children }: SwitchProps) => {
+  return (
+    <SwitchContext.Provider value={{ on }}>
+      {children}
+    </SwitchContext.Provider>
+  )
+}
+
+const Case = ({
+  that,
+  children,
+}: {
+  that: string | number | boolean
+  children: ReactNode
+}) => {
+  const { on } = useSwitchContext()
+  return (
+    <Show when={on === that} fallback={null}>
+      {children}
+    </Show>
+  )
+}
+
+export { For, Show, Switch, Case }
