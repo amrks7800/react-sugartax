@@ -1,6 +1,6 @@
 # React-sugartax
 
-React package for simpler syntax in looping and conditional rendering via dedicated components For.tsx & Show.tsx 😊
+React package for simpler syntax in looping and conditional rendering via dedicated components For.tsx & Show.tsx...etc 😊
 
 # Installation
 
@@ -72,6 +72,66 @@ const Component = () => {
         <h1>length is 1</h1>
       </Case>
     </Switch>
+  )
+}
+```
+
+# More Examples
+
+- combination of <kbd>Show</kbd> + <kbd>For</kbd>
+
+```typescript
+import { Show, For } from "@dev-amr/react-sugartax"
+
+const Component = () => {
+  const [arr, setArr] = useState<string[]>([])
+
+  return (
+    <Show
+      when={!!arr.length}
+      fallback={<h3>there is no devs out there 😂</h3>}
+    >
+      <For each={arr}>
+        {(item, i) => <h1 key={i}>hello devs {item} 😀</h1>}
+      </For>
+    </Show>
+  )
+}
+```
+
+- combination of <kbd>For</kbd> with our <kbd>usePagination</kbd> hook 😊.
+
+```typescript
+import { For, usePagination } from "@dev-amr/react-sugartax"
+import { useState } from "react"
+
+let array: number[] = []
+for (let i = 0; i <= 53; i++) {
+  array.push(i)
+}
+
+function App() {
+  const [arr] = useState(array)
+  const { nextPage, previousPage, page, currentPage } =
+    usePagination({ Input: arr, perPage: 10 })
+  return (
+    <>
+      <For each={page}>
+        {(item, i) => (
+          <p>
+            <span>{item}</span>
+            <span>{i}</span>
+          </p>
+        )}
+      </For>
+      <p>current page: {currentPage}</p>
+      <div>
+        <button onClick={previousPage}>
+          previous page
+        </button>
+        <button onClick={nextPage}>next page</button>
+      </div>
+    </>
   )
 }
 ```

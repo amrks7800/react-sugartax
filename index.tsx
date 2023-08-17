@@ -67,4 +67,6 @@ const Case = ({ that, children }: CaseProps) => {
   )
 }
 
+export { default as usePagination } from "./hooks/usePagination"
+
 export { For, Show, Switch, Case }
