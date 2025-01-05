@@ -50,11 +50,20 @@ const usePagination = <T extends {}>({
     }
   }
 
+  function backToFirstPage() {
+    setCurrentPage(1)
+    setSlice({
+      start: 0,
+      end: perPage,
+    })
+  }
+
   return {
     nextPage,
     previousPage,
     currentPage,
     pages,
+    backToFirstPage,
     page: Input.slice(slice.start, slice.end),
   }
 }
